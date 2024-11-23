@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inquiry Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+        .inquiry-box {
+            background-color: lightsalmon;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px; /* Increased width for horizontal layout */
+            margin: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            flex: 1; /* Allow form groups to take equal space */
+            margin-right: 40px; /* Space between columns */
+        }
+        .form-group:last-child {
+            margin-right: 0; /* Remove right margin for the last item */
+        }
+        label {
+            color: #555;
+            margin-bottom: 5px;
+            display: block; /* Change to block for labels */
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%; /* Input width */
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            border-color: #6a11cb; /* Change border color on focus */
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #6a11cb; /* Primary button color */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        input[type="submit"]:hover {
+            background-color: #2575fc; /* Change color on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+        textarea {
+            resize: none; /* Prevent resizing */
+            height: 100px; /* Set a fixed height for the textarea */
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: row; /* Horizontal layout for checkboxes */
+            flex-wrap: wrap; /* Allow wrapping of checkboxes */
+        }
+        .checkbox-group label {
+            margin-right: 20px; /* Space between checkbox labels */
+        }
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column; /* Stack elements in column on small screens */
+            }
+            .form-group {
+                margin-right: 0; /* Remove margin for mobile */
+            }
+            input[type="text"], input[type="email"], textarea, select {
+                width: 100%; /* Inputs take full width */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="inquiry-box">
+    <h2>Enquiry Form</h2>
+    <form action="#" method="post" id="inquiryForm">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inquiryType">Type of Enquiry:</label>
+                <select id="inquiryType" name="inquiryType" onchange="handleInquiryChange()" required>
+                    <option value="">Select...</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="support">Support</option>
+                    <option value="feedback">Feedback</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+        </div>
+        <div class="form-group checkbox-group" id="additionalOptions" style="display: none;">
+            <label>Additional Topics:</label>
+            <label><input type="checkbox" name="topics" value="product-info"> Product Information</label>
+            <label><input type="checkbox" name="topics" value="pricing"> Pricing</label>
+            <label><input type="checkbox" name="topics" value="other"> Other</label>
+        </div>
+        <input type="submit" value="Submit Inquiry">
+    </form>
+</div>
+
+<script>
+    function handleInquiryChange() {
+        const inquiryType = document.getElementById('inquiryType').value;
+        const additionalOptions = document.getElementById('additionalOptions');
+        if (inquiryType === 'support') {
+            additionalOptions.style.display = 'block'; // Show additional options for support inquiries
+        } else {
+            additionalOptions.style.display = 'none'; // Hide additional options for other inquiries
+        }
+    }
+</script>
+
+</body>
+</html>
+
